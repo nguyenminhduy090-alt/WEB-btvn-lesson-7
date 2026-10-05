@@ -1,0 +1,60 @@
+@model IEnumerable<fixBookmanagement.Models.Book>
+@{
+    ViewData["Title"] = "Danh sách sách";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h1 class="fw-bold mb-1">Danh sách sách</h1>
+        <p class="text-muted mb-0">Quản lý thông tin sách</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">+ Thêm sách</a>
+</div>
+
+<form method="get" class="card card-body shadow-sm mb-4">
+    <div class="row g-2">
+        <div class="col-md-10">
+            <input name="keyword" value="@ViewBag.Keyword" class="form-control"
+                   placeholder="Nhập tên sách, tác giả hoặc thể loại..." />
+        </div>
+        <div class="col-md-2 d-grid">
+            <button class="btn btn-outline-primary">Tìm kiếm</button>
+        </div>
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sách</th>
+                    <th>Tác giả</th>
+                    <th>Thể loại</th>
+                    <th>Giá</th>
+                    <th>Năm</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <td class="fw-semibold">@book.Title</td>
+                    <td>@book.Author</td>
+                    <td><span class="badge text-bg-secondary">@book.Category</span></td>
+                    <td>@book.Price.ToString("N0") đ</td>
+                    <td>@book.PublishedYear</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

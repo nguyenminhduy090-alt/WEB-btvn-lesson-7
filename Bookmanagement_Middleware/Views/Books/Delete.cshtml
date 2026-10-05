@@ -1,0 +1,15 @@
+@model fixBookmanagement.Models.Book
+@{
+    ViewData["Title"] = "Xóa sách";
+}
+<div class="card shadow-sm">
+    <div class="card-header bg-danger text-white"><h4 class="mb-0">Xóa sách</h4></div>
+    <div class="card-body">
+        <p class="alert alert-warning">Bạn có chắc muốn xóa <strong>@Model.Title</strong> không?</p>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button class="btn btn-danger">Xác nhận xóa</button>
+            <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>

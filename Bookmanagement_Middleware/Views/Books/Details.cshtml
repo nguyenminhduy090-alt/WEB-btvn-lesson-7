@@ -1,0 +1,18 @@
+@model fixBookmanagement.Models.Book
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white"><h4 class="mb-0">Chi tiết sách</h4></div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Tên sách</dt><dd class="col-sm-9">@Model.Title</dd>
+            <dt class="col-sm-3">Tác giả</dt><dd class="col-sm-9">@Model.Author</dd>
+            <dt class="col-sm-3">Thể loại</dt><dd class="col-sm-9">@Model.Category</dd>
+            <dt class="col-sm-3">Giá</dt><dd class="col-sm-9">@Model.Price.ToString("N0") đ</dd>
+            <dt class="col-sm-3">Năm xuất bản</dt><dd class="col-sm-9">@Model.PublishedYear</dd>
+        </dl>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</div>
