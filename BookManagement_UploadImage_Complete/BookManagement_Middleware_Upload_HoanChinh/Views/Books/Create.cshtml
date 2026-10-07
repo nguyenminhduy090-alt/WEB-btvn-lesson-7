@@ -1,0 +1,56 @@
+@model fixBookmanagement.Models.Book
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Thêm sách mới</h4>
+    </div>
+    <div class="card-body">
+        <!-- enctype="multipart/form-data" là bắt buộc khi form có upload file -->
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Author" class="form-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Category" class="form-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PublishedYear" class="form-label"></label>
+                <input asp-for="PublishedYear" class="form-control" />
+                <span asp-validation-for="PublishedYear" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ImageFile" class="form-label">Ảnh bìa sách</label>
+                <input asp-for="ImageFile" type="file" class="form-control" accept=".jpg,.jpeg,.png,.webp,image/*" />
+                <div class="form-text">JPG, JPEG, PNG hoặc WEBP. Tối đa 5 MB.</div>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Lưu sách</button>
+            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@model fixBookmanagement.Models.Book
+@{
+    ViewData["Title"] = "Chi tiết";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Chi tiết sách</h4>
+    </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md-4">
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+                {
+                    <img src="@Model.ImagePath" alt="Ảnh @Model.Title" class="img-fluid img-thumbnail" style="max-height: 360px; object-fit: cover;" />
+                }
+                else
+                {
+                    <div class="border rounded p-5 text-center text-muted">Chưa có ảnh</div>
+                }
+            </div>
+
+            <div class="col-md-8">
+                <dl class="row">
+                    <dt class="col-sm-4">Tên sách</dt><dd class="col-sm-8">@Model.Title</dd>
+                    <dt class="col-sm-4">Tác giả</dt><dd class="col-sm-8">@Model.Author</dd>
+                    <dt class="col-sm-4">Thể loại</dt><dd class="col-sm-8">@Model.Category</dd>
+                    <dt class="col-sm-4">Giá</dt><dd class="col-sm-8">@Model.Price.ToString("N0") đ</dd>
+                    <dt class="col-sm-4">Năm xuất bản</dt><dd class="col-sm-8">@Model.PublishedYear</dd>
+                </dl>
+
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>

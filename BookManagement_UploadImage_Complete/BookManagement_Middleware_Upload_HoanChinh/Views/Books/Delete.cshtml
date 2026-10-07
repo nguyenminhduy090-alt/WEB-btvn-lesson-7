@@ -1,0 +1,29 @@
+@model fixBookmanagement.Models.Book
+@{
+    ViewData["Title"] = "Xóa sách";
+}
+
+<div class="card shadow-sm border-danger">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">Xác nhận xóa sách</h4>
+    </div>
+    <div class="card-body">
+        <p>Bạn có chắc muốn xóa cuốn sách này không?</p>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+        {
+            <img src="@Model.ImagePath" alt="Ảnh @Model.Title" style="width: 120px; max-height: 160px; object-fit: cover;" class="img-thumbnail mb-3" />
+        }
+
+        <dl class="row">
+            <dt class="col-sm-3">Tên sách</dt><dd class="col-sm-9">@Model.Title</dd>
+            <dt class="col-sm-3">Tác giả</dt><dd class="col-sm-9">@Model.Author</dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>
